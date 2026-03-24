@@ -7,10 +7,10 @@
         "email": "alba9551@mylaurier.ca",
         "medical_records": [
             {
-                "date": "2026-03-22T17:31:46.435835",
-                "diagnosis": "Flu",
-                "treatment": "Cough Syrup",
-                "notes": "N/A"
+                "date": "2026-03-23T13:16:20.988949",
+                "diagnosis": null,
+                "treatment": null,
+                "notes": ""
             }
         ]
     }
