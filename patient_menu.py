@@ -9,24 +9,26 @@ class PatientGUI:
         self.db.load_from_file()
         self.root = root
         self.root.title("Patient Records Management System")
-        self.root.geometry("450x375")
-        self.root.minsize(450, 375)
+        self.root.geometry("450x450")
+        self.root.minsize(450, 450)
+        self.root.configure(background='steelblue2')
+        
 
         # Listbox for patients
         self.patient_list = tk.Listbox(root, width=50, height=10)
         self.patient_list.pack(pady=10)
 
         # Buttons
-        button_frame = tk.Frame(root)
+        button_frame = tk.Frame(root, background='steelblue3', borderwidth=1, relief='solid')
         button_frame.pack()
-
+        tk.Button()
         tk.Button(button_frame, text="Add Patient", command=self.add_patient).grid(row=0, column=0, padx=5, pady=5)
         tk.Button(button_frame, text="Remove Patient", command=self.remove_patient).grid(row=0, column=1, padx=5, pady=5)
         tk.Button(button_frame, text="View Patient Info", command=self.view_patient).grid(row=1, column=0, padx=5, pady=5)
         tk.Button(button_frame, text="Add Medical Record", command=self.add_record).grid(row=1, column=1, padx=5, pady=5)
         tk.Button(button_frame, text="View Medical Records", command=self.view_records).grid(row=2, column=0, padx=5, pady=5)
-        tk.Button(button_frame, text="Exit", command=root.quit).grid(row=2, column=1, padx=5, pady=5)
-
+        tk.Button(button_frame, text="Back to Menu", command=self.root.destroy).grid(row=2, column=1, padx=5, pady=5)
+        
         self.update_patient_list()
 
     def update_patient_list(self):

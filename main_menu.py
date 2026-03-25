@@ -1,5 +1,5 @@
 import tkinter as tk
-from patient_tracker import PatientGUI
+from patient_menu import PatientGUI
 from resource_tracker import ResourceTrackerMenu
 
 class MainMenu:

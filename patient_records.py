@@ -75,7 +75,10 @@ class PatientDatabase:
                 patient = Patient(p_dict['patient_id'], p_dict['name'], dob, p_dict['contact_number'], p_dict['email'])
                 for r_dict in p_dict['medical_records']:
                     date = datetime.fromisoformat(r_dict['date'])
-                    record = MedicalRecord(date, r_dict['diagnosis'], r_dict['treatment'], r_dict['notes'])
+                    diagnosis = r_dict.get('diagnosis') or ""
+                    treatment = r_dict.get('treatment') or ""
+                    notes = r_dict.get('notes', '')
+                    record = MedicalRecord(date, diagnosis, treatment, notes)
                     patient.medical_records.append(record)
                 self.patients[pid] = patient
         except (FileNotFoundError, json.JSONDecodeError):
