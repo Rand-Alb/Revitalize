@@ -1,3 +1,16 @@
+"""
+-------------------------------------------
+[resource_tracker.py]
+-------------------------------------------
+Author: Dorian Le
+Updated: 2026-03-25
+Desc: This module implements the resource
+tracking menu for the clinic management system.
+The user can view inventory levels, add stock,
+and log usage for multiple clinics.
+-------------------------------------------
+"""
+# Imports
 import json
 import os
 import tkinter as tk
