@@ -22,7 +22,7 @@ def save_data(data: Dict[str, Dict[str, int]]):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
-class ResourceTrackerApp:
+class ResourceTrackerMenu:
     tree: ttk.Treeview
     clinic_var: tk.StringVar
     clinic_entry: ttk.Entry
@@ -34,8 +34,8 @@ class ResourceTrackerApp:
     def __init__(self, root: tk.Tk):
         self.root = root
         self.root.title("Clinic Resource Tracker")
-        self.root.geometry("700x500")
-        self.root.minsize(650, 450)
+        self.root.geometry("650x450")
+        self.root.minsize(850, 450)
         
         # Load data
         self.data = load_data()
@@ -195,7 +195,7 @@ class ResourceTrackerApp:
 
 def main():
     root = tk.Tk()
-    app = ResourceTrackerApp(root)
+    app = ResourceTrackerMenu(root)
     root.mainloop()
 
 if __name__ == "__main__":

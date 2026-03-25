@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List
+from typing import List, Dict, Optional
 import json
 
 @dataclass
@@ -17,11 +17,7 @@ class Patient:
     date_of_birth: datetime
     contact_number: str
     email: str
-    medical_records: List[MedicalRecord] = None
-    
-    def __post_init__(self):
-        if self.medical_records is None:
-            self.medical_records = []
+    medical_records: List[MedicalRecord] = field(default_factory=list)
     
     def add_record(self, diagnosis: str, treatment: str, notes: str = ""):
         record = MedicalRecord(
@@ -37,17 +33,16 @@ class Patient:
 
 class PatientDatabase:
     def __init__(self):
-        self.patients = {}
+        self.patients: Dict[str, Patient] = {}
     
     def add_patient(self, patient: Patient):
         self.patients[patient.patient_id] = patient
     
-    def get_patient(self, patient_id: str) -> Patient:
+    def get_patient(self, patient_id: str) -> Optional[Patient]:
         return self.patients.get(patient_id)
     
     def remove_patient(self, patient_id: str):
-        if patient_id in self.patients:
-            del self.patients[patient_id]
+        self.patients.pop(patient_id, None)
     
     def save_to_file(self, filename='patients.json'):
         data = {}
@@ -83,5 +78,5 @@ class PatientDatabase:
                     record = MedicalRecord(date, r_dict['diagnosis'], r_dict['treatment'], r_dict['notes'])
                     patient.medical_records.append(record)
                 self.patients[pid] = patient
-        except FileNotFoundError:
-            pass  # No file, start empty
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass  # No file, or empty/invalid JSON file, start empty

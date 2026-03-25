@@ -9,6 +9,8 @@ class PatientGUI:
         self.db.load_from_file()
         self.root = root
         self.root.title("Patient Records Management System")
+        self.root.geometry("450x375")
+        self.root.minsize(450, 375)
 
         # Listbox for patients
         self.patient_list = tk.Listbox(root, width=50, height=10)
@@ -43,16 +45,22 @@ class PatientGUI:
     def add_patient(self):
         patient_id = simpledialog.askstring("Add Patient", "Patient ID:")
         if not patient_id: return
+        if self.db.get_patient(patient_id):
+            messagebox.showerror("Error", "Patient ID already exists.")
+            return
         name = simpledialog.askstring("Add Patient", "Name:")
         if not name: return
         dob_str = simpledialog.askstring("Add Patient", "Date of Birth (YYYY-MM-DD):")
+        if not dob_str: return
         try:
             dob = datetime.strptime(dob_str, "%Y-%m-%d")
         except ValueError:
             messagebox.showerror("Error", "Invalid date format. Use YYYY-MM-DD.")
             return
         contact = simpledialog.askstring("Add Patient", "Contact Number:")
+        if contact is None: return
         email = simpledialog.askstring("Add Patient", "Email:")
+        if email is None: return
         patient = patient_records.Patient(patient_id, name, dob, contact, email)
         self.db.add_patient(patient)
         self.db.save_to_file()
@@ -77,9 +85,12 @@ class PatientGUI:
             messagebox.showerror("Error", "Patient not found.")
             return
         diagnosis = simpledialog.askstring("Add Record", "Diagnosis:")
+        if not diagnosis: return
         treatment = simpledialog.askstring("Add Record", "Treatment:")
+        if not treatment: return
         notes = simpledialog.askstring("Add Record", "Notes:")
-        patient.add_record(diagnosis, treatment, notes or "")
+        if notes is None: return
+        patient.add_record(diagnosis, treatment, notes)
         self.db.save_to_file()
         messagebox.showinfo("Success", "Record added.")
 
