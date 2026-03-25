@@ -1,3 +1,16 @@
+"""
+-------------------------------------------
+[resource_tracker.py]
+-------------------------------------------
+Author: Dorian Le
+Updated: 2026-03-25
+Desc: This module implements the resource
+tracking menu for the clinic management system.
+The user can view inventory levels, add stock,
+and log usage for multiple clinics.
+-------------------------------------------
+"""
+# Imports
 import json
 import os
 import tkinter as tk
@@ -52,15 +65,15 @@ class ResourceTrackerMenu:
         
     def setup_ui(self):
         # Main container
-        main_frame = ttk.Frame(self.root, padding=15)
+        main_frame = tk.Frame(self.root, background='steelblue2', padx=15, pady=15)
         main_frame.pack(fill=tk.BOTH, expand=True)
 
         # Title
-        title_lbl = ttk.Label(main_frame, text="Clinic Resource Tracker", font=('Helvetica', 16, 'bold'))
+        title_lbl = tk.Label(main_frame, text="Clinic Resource Tracker", font=('Helvetica', 16, 'bold'), bg='steelblue2')
         title_lbl.pack(anchor=tk.W, pady=(0, 15))
 
         # Inventory Table Frame
-        table_frame = ttk.Frame(main_frame)
+        table_frame = tk.Frame(main_frame, background='steelblue2')
         table_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 15))
         
         columns = ("Clinic", "Item", "Quantity", "Status")
@@ -82,7 +95,7 @@ class ResourceTrackerMenu:
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
         # Controls Frame (Bottom)
-        control_frame = ttk.LabelFrame(main_frame, text="Manage Inventory", padding=10)
+        control_frame = tk.LabelFrame(main_frame, text="Manage Inventory", bg='steelblue2', fg='black', padx=10, pady=10)
         control_frame.pack(fill=tk.X)
         
         # Grid layout for inputs

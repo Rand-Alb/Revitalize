@@ -13,13 +13,16 @@ class PatientGUI:
         self.root.minsize(450, 450)
         self.root.configure(background='steelblue2')
         
+        # Header
+        header_label = tk.Label(root, text="Patient Records", font=('Helvetica', 16, 'bold'), bg='steelblue2', fg='black')
+        header_label.pack(pady=(10, 5))
 
         # Listbox for patients
         self.patient_list = tk.Listbox(root, width=50, height=10)
         self.patient_list.pack(pady=10)
 
         # Buttons
-        button_frame = tk.Frame(root, background='steelblue3', borderwidth=1, relief='solid')
+        button_frame = tk.Frame(root, background='steelblue2')
         button_frame.pack()
         tk.Button()
         tk.Button(button_frame, text="Add Patient", command=self.add_patient).grid(row=0, column=0, padx=5, pady=5)
