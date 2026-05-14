@@ -57,5 +57,5 @@ All three feature windows can be opened at the same time.
 Built by a three-person team at Golden Hacks 2026:
 
 - [Ali Al-Khazraji](https://github.com/AliAl-Khazraji)
-- [Rand Albaroudi] (https://github.com/Rand-Alb)
+- [Rand Albaroudi](https://github.com/Rand-Alb)
 - [Dorian Le](https://github.com/DorianLe)
